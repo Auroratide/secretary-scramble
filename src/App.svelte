@@ -1,5 +1,6 @@
 <script>
-	import { createUnscheduledMeeting, createBlankSchedule, scheduleMeetings, randomMeeting } from './game'
+	import { createBlankSchedule, scheduleMeetings, randomMeeting } from './game'
+	import { flip } from 'svelte/animate'
 	import Meeting from './Meeting.svelte'
 	import Schedule from './Schedule.svelte'
 	import ScheduleColumn from './ScheduleColumn.svelte'
@@ -14,6 +15,7 @@
 	]
 
 	const onConsider = (e) => {
+		document.body.classList.remove('over-schedule')
 		unscheduled = e.detail.items
 	}
 
@@ -26,9 +28,9 @@
 
 <Viewport>
 	<main>
-		<div use:dndzone={{items: unscheduled}} class="unscheduled" on:consider={onConsider} on:finalize={onFinalize}>
+		<div use:dndzone={{items: unscheduled, flipDurationMs: 200 }} class="unscheduled" on:consider={onConsider} on:finalize={onFinalize}>
 			{#each unscheduled as meeting (meeting.id)}
-				<Meeting meeting={meeting} />
+				<Meeting animate:flip={{duration: 200}} meeting={meeting} />
 			{/each}
 		</div>
 		<div class="meetings">

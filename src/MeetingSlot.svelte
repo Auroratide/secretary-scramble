@@ -8,6 +8,7 @@
     export let meetings
 
     const onConsider = (e) => {
+        document.body.classList.add('over-schedule')
         dispatch('schedule', {
             items: e.detail.items,
         })

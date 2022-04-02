@@ -70,6 +70,10 @@ button:focus {
 	border-color: #666;
 }
 
-#dnd-action-dragged-el {
+.over-schedule #dnd-action-dragged-el {
 	visibility: hidden !important;
+}
+
+.over-schedule .meeting {
+	visibility: visible !important;
 }

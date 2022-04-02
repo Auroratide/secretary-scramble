@@ -14,7 +14,6 @@
         outline: 1px solid black;
         position: relative;
         z-index: 2;
-        visibility: visible !important;
     }
 
     .details {
