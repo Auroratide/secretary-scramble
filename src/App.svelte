@@ -1,10 +1,20 @@
 <script>
-	import { createBlankSchedule, scheduleMeetings, randomMeeting } from './game'
+	import { onMount } from 'svelte'
+	import {
+		createBlankSchedule,
+		scheduleMeetings,
+		randomMeeting,
+		startOfDay,
+		endOfDay,
+		initialSchedule,
+	} from './game'
 	import Meeting from './Meeting.svelte'
 	import Schedule from './Schedule.svelte'
 	import ScheduleColumn from './ScheduleColumn.svelte'
 	import Viewport from './Viewport.svelte'
 	import { dndzone } from 'svelte-dnd-action'
+
+	let currentTime = startOfDay
 
 	let unscheduled = [
 		randomMeeting(),
@@ -22,7 +32,30 @@
 		unscheduled = e.detail.items
 	}
 
-	let schedule = scheduleMeetings(createBlankSchedule(0))('0')([randomMeeting()])
+	let currentSchedule = initialSchedule
+	let tomorrowSchedule = createBlankSchedule()
+
+	const finishDay = () => {
+		currentSchedule = tomorrowSchedule
+		tomorrowSchedule = createBlankSchedule()
+		currentTime = startOfDay
+	}
+
+	const tick = () => {
+		currentTime += 1
+		if (Math.random() < 0.0025) {
+			unscheduled = [...unscheduled, randomMeeting()]
+		}
+
+		if (currentTime > endOfDay) {
+			finishDay()
+		}
+
+		requestAnimationFrame(tick)
+	}
+	onMount(() => {
+		requestAnimationFrame(tick)
+	})
 </script>
 
 <Viewport>
@@ -33,8 +66,9 @@
 			{/each}
 		</div>
 		<div class="meetings">
-			<Schedule>
-				<ScheduleColumn slot="column-1" schedule={schedule} />
+			<Schedule currentTime={currentTime}>
+				<ScheduleColumn slot="column-1" bind:schedule={currentSchedule} />
+				<ScheduleColumn slot="column-2" bind:schedule={tomorrowSchedule} />
 			</Schedule>
 		</div>
 	</main>

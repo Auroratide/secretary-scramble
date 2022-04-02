@@ -1,3 +1,7 @@
+<script>
+    export let currentTime
+</script>
+
 <section class="schedule">
     <aside class="times">
         <time datetime="9:00">9 AM</time>
@@ -10,7 +14,8 @@
         <time datetime="16:00">4 PM</time>
         <time datetime="17:00">5 PM</time>
     </aside>
-    <div class="column">
+    <div class="first column">
+        <div class="current-time" style:top="calc(var(--segment-15) * {currentTime / 15}"></div>
         <slot name="column-1"></slot>
     </div>
     <div class="column">
@@ -96,5 +101,19 @@
         height: 0;
         width: 100%;
         margin: 0;
+    }
+
+    .first.column {
+        position: relative;
+    }
+
+    .current-time {
+        position: absolute;
+        border-top: 0.25em solid red;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        margin-top: -0.125em;
     }
 </style>

@@ -39,12 +39,34 @@ export const minuteSlots = [
     '420',
     '450',
 ]
-export const createBlankSchedule = (day) => ({
-    day,
+let scheduleCounter = 0
+export const initialSchedule = {
+    id: ++scheduleCounter,
+    slots: {
+        '0': [createUnscheduledMeeting({ name: 'Marketing Update', duration: 60 })],
+        '30': [],
+        '60': [],
+        '90': [createUnscheduledMeeting({ name: 'Core Work Time', duration: 120 })],
+        '120': [],
+        '150': [],
+        '180': [],
+        '210': [createUnscheduledMeeting({ name: 'Lunch', duration: 60 })],
+        '240': [],
+        '270': [],
+        '300': [],
+        '330': [],
+        '360': [],
+        '390': [],
+        '420': [],
+        '450': [],
+    }
+}
+export const createBlankSchedule = () => ({
+    id: ++scheduleCounter,
     slots: minuteSlots.reduce((obj, minute) => ({
         ...obj,
         [minute]: [],
-    })),
+    }), {}),
 })
 
 // gimme a schedule back, updated
@@ -56,11 +78,5 @@ export const scheduleMeetings = (schedule) => (minute) => (meetings) => ({
     },
 })
 
-let previousTime = 0
-const tick = (timestamp) => {
-
-}
-
-export const start = () => {
-    return requestAnimationFrame(tick)
-}
+export const startOfDay = -30
+export const endOfDay = startOfDay + 9 * 60
