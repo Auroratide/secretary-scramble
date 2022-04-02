@@ -29,7 +29,9 @@
 
 <style>
     .zone {
-        height: 30px;
-        background-color: rgba(255, 0, 0, 0.5);
+        height: var(--segment-30);
+        /* background-color: rgba(255, 0, 0, 0.5);
+        border: 1px solid black; */
+        /* margin-bottom: 1px; */
     }
 </style>

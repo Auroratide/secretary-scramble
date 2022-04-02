@@ -55,3 +55,12 @@ export const scheduleMeetings = (schedule) => (minute) => (meetings) => ({
         [minute]: meetings,
     },
 })
+
+let previousTime = 0
+const tick = (timestamp) => {
+
+}
+
+export const start = () => {
+    return requestAnimationFrame(tick)
+}

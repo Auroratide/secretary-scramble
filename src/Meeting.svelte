@@ -2,7 +2,7 @@
     export let meeting
 </script>
 
-<article class="meeting" style:height="{meeting.duration}px">
+<article class="meeting" style:height="calc(var(--segment-15) * {meeting.duration / 15})">
     <div class="details">
         <h3>{meeting.name}</h3>
     </div>
@@ -11,7 +11,6 @@
 <style>
     .meeting {
         padding: 0.125em;
-        outline: 1px solid black;
         position: relative;
         z-index: 2;
     }

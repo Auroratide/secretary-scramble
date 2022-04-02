@@ -4,10 +4,10 @@
 
 <style>
     .viewport {
-        width: 50rem;
-        height: 37.5em;
+        width: var(--viewport-width);
+        height: var(--viewport-height);
         margin: auto;
         background-color: white;
-        padding: 0.5em;
+        padding: var(--viewport-padding);
     }
 </style>

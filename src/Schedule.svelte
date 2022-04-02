@@ -33,12 +33,12 @@
     .schedule {
         --times-width: 4em;
         --times-padding: 0.5em;
-        --end-of-day-buffer: calc((3000% / var(--minutes-in-day)));
+        --end-of-day-buffer: var(--segment-30);
 
         position: relative;
         display: grid;
         grid-template-columns: var(--times-width) 1fr 1fr;
-        height: 100%;
+        height: calc(18 * var(--segment-30));
         padding: var(--end-of-day-buffer) 0;
         border: 1px solid black;
     }
@@ -57,6 +57,11 @@
     .times time {
         position: relative;
         top: -0.5em;
+        height: calc(2 * var(--segment-30));
+    }
+
+    .times time:last-child {
+        height: auto;
     }
 
     .time-dividers {
@@ -66,25 +71,29 @@
         justify-content: space-between;
         width: calc(100% - var(--times-width) + var(--times-padding));
         top: var(--end-of-day-buffer);
-        bottom: var(--end-of-day-buffer);
+        bottom: 0;
         right: 0;
-        z-index: -1;
+        /* z-index: -1; */
     }
 
     .divider {
         font-size: var(--font-sz-venus);
-        height: 1em;
+        height: calc(2 * var(--segment-30));
         line-height: 1;
         display: flex;
         align-items: flex-start;
+    }
+
+    .divider:last-child {
+        height: var(--segment-30);
     }
 
     hr {
         font-size: 1rem;
         background: none;
         border: none;
-        border-bottom: 0.0625em solid grey;
-        height: 0.0625em;
+        border-top: 0.0625em solid grey;
+        height: 0;
         width: 100%;
         margin: 0;
     }

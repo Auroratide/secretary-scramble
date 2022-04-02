@@ -1,5 +1,10 @@
 :root {
 	--minutes-in-day: 480; /* 8 hours in day */
+	--viewport-width: 50rem;
+	--viewport-height: 37.5rem;
+	--viewport-padding: 0.5rem;
+	--segment-15: calc((var(--viewport-height) - 2 * var(--viewport-padding)) / 36);
+	--segment-30: calc((var(--viewport-height) - 2 * var(--viewport-padding)) / 18);
 
 	--font-sz-venus: 0.875em;
 	--font-sz-earth: 1em;
