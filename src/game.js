@@ -1,11 +1,24 @@
+import { meetingTemplates } from './meeting-templates'
+
 let meetingCounter = 0
 
 export const createUnscheduledMeeting = ({
+    name,
     duration, // minutes
 }) => ({
     id: ++meetingCounter,
+    name,
     duration,
 })
+
+const meetingQuanta = 15
+export const randomMeeting = () => {
+    const meetingType = meetingTemplates[Math.floor(Math.random() * meetingTemplates.length)]
+    return createUnscheduledMeeting({
+        name: meetingType.name,
+        duration: meetingType.minDuration + meetingQuanta * Math.floor(Math.random() * (meetingType.maxDuration - meetingType.minDuration + meetingQuanta) / meetingQuanta),
+    })
+}
 
 // 9am = 0; 5pm = 480
 export const minuteSlots = [

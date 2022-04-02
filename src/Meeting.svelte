@@ -1,10 +1,10 @@
 <script>
-    export let duration // minutes
+    export let meeting
 </script>
 
-<article class="meeting" style:height="{duration}px">
+<article class="meeting" style:height="{meeting.duration}px">
     <div class="details">
-        <h3>Meeting</h3>
+        <h3>{meeting.name}</h3>
     </div>
 </article>
 

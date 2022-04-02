@@ -22,7 +22,7 @@
 
 <div class="zone" use:dndzone={{ items: meetings }} on:consider={onConsider} on:finalize={onFinalize}>
     {#each meetings as meeting (meeting.id)}
-        <Meeting duration={meeting.duration} />
+        <Meeting meeting={meeting} />
     {/each}
 </div>
 
