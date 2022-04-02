@@ -1,6 +1,5 @@
 <script>
 	import { createBlankSchedule, scheduleMeetings, randomMeeting } from './game'
-	import { flip } from 'svelte/animate'
 	import Meeting from './Meeting.svelte'
 	import Schedule from './Schedule.svelte'
 	import ScheduleColumn from './ScheduleColumn.svelte'
@@ -30,7 +29,7 @@
 	<main>
 		<div use:dndzone={{items: unscheduled, flipDurationMs: 200 }} class="unscheduled" on:consider={onConsider} on:finalize={onFinalize}>
 			{#each unscheduled as meeting (meeting.id)}
-				<Meeting animate:flip={{duration: 200}} meeting={meeting} />
+				<Meeting meeting={meeting} />
 			{/each}
 		</div>
 		<div class="meetings">
