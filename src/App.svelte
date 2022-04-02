@@ -3,6 +3,7 @@
 	import Meeting from './Meeting.svelte'
 	import Schedule from './Schedule.svelte'
 	import ScheduleColumn from './ScheduleColumn.svelte'
+	import Viewport from './Viewport.svelte'
 
 	let unscheduled = [
 		createUnscheduledMeeting({ duration: 60 }),
@@ -15,31 +16,34 @@
 	]
 </script>
 
-<main>
-	<div class="unscheduled">
-		{#each unscheduled as meeting (meeting.id)}
-			<Meeting duration={meeting.duration} />
-		{/each}
-	</div>
-	<div class="meetings">
-		<Schedule>
-			<ScheduleColumn slot="column-1" meetings={scheduled} />
-		</Schedule>
-	</div>
-</main>
+<Viewport>
+	<main>
+		<div class="unscheduled">
+			{#each unscheduled as meeting (meeting.id)}
+				<Meeting duration={meeting.duration} />
+			{/each}
+		</div>
+		<div class="meetings">
+			<Schedule>
+				<ScheduleColumn slot="column-1" meetings={scheduled} />
+			</Schedule>
+		</div>
+	</main>
+</Viewport>
 
 <style>
 	main {
-		display: flex;
-		gap: 1em;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 0.5em;
+		height: 100%;
 	}
 
 	.unscheduled {
-		width: 600px;
+		height: 100%;
 	}
 	
 	.meetings {
-		width: 600px;
-		height: 600px;
+		height: 100%
 	}
 </style>
