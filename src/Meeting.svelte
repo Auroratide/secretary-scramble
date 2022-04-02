@@ -2,13 +2,20 @@
     export let duration // minutes
 </script>
 
-<article style:height="{duration}px">
-    <h3>Meeting</h3>
+<article class="meeting" style:height="{duration}px">
+    <div class="details">
+        <h3>Meeting</h3>
+    </div>
 </article>
 
 <style>
-    article {
+    .meeting {
+        padding: 0.125em;
+        outline: 1px solid black;
+    }
+
+    .details {
         background: wheat;
-        margin-bottom: 10px;
+        height: 100%;
     }
 </style>

@@ -1,3 +1,10 @@
+:root {
+	--minutes-in-day: 480; /* 8 hours in day */
+
+	--font-sz-venus: 0.875em;
+	--font-sz-earth: 1em;
+}
+
 html, body {
 	position: relative;
 	width: 100%;
